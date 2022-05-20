@@ -61,14 +61,14 @@ spec:
               key: siteid
         volumeMounts:
           - mountPath: "/omd/sites"
-            name: pvc-5dbfa90a-6aa1-48dc-9e53-2b0756d9d052
+            name: checkmk-pv-storage
       restartPolicy: Always
       imagePullSecrets:
       - name: pull-secret
       securityContext: {}
       volumes:
 # Requires a persistent volume
-        - name: pvc-5dbfa90a-6aa1-48dc-9e53-2b0756d9d052
+        - name: checkmk-pv-storage
           persistentVolumeClaim:
             claimName: checkmk-pv-claim
 # In case no persistent volume available

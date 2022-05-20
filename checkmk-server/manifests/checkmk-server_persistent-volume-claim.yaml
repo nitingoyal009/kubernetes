@@ -9,6 +9,6 @@ spec:
   resources:
     requests:
       # Rather size larger for production environments
-      storage: 16Gi
+      storage: 3Gi
   accessModes:
     - ReadWriteOnce

@@ -22,7 +22,8 @@ spec:
       serviceAccount: checkmk
       containers:
       # For upadting Checkmk, just change the image. Don't downgrade between major versions
-      - image: registry.checkmk.com/enterprise/check-mk-enterprise:2.0.0p5
+      - image: nigoyal7/checkmk:2.0.0p23     
+        #registry.checkmk.com/enterprise/check-mk-enterprise:2.0.0p5
         imagePullPolicy: IfNotPresent
         name: checkmk
         ports:
@@ -45,8 +46,8 @@ spec:
 #            memory:
           # Please adjust the requests to the size of your Checkmk instance. Rather increase then decrease the requests.
           requests:
-            cpu: "2000m"
-            memory: "4Gi"
+            cpu: "400m"
+            memory: "1Gi"
         env:
         - name: CMK_PASSWORD
           valueFrom:
@@ -60,14 +61,14 @@ spec:
               key: siteid
         volumeMounts:
           - mountPath: "/omd/sites"
-            name: checkmk-pv-storage
+            name: pvc-5dbfa90a-6aa1-48dc-9e53-2b0756d9d052
       restartPolicy: Always
       imagePullSecrets:
       - name: pull-secret
       securityContext: {}
       volumes:
 # Requires a persistent volume
-        - name: checkmk-pv-storage
+        - name: pvc-5dbfa90a-6aa1-48dc-9e53-2b0756d9d052
           persistentVolumeClaim:
             claimName: checkmk-pv-claim
 # In case no persistent volume available

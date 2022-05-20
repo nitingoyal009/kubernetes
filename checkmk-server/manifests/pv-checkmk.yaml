@@ -4,7 +4,7 @@ metadata:
   name: checkmk-pv-storage
 spec:
   capacity:
-    storage: 5Gi
+    storage: 3Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
@@ -16,9 +16,7 @@ spec:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: kubernetes.io/hostname
+        - key: beta.kubernetes.io/os
           operator: In
           values:
-          - master-worker
-          - master-worker1
-          - master-worker2
+          - linux
